@@ -12,7 +12,7 @@ const createTodo = (name, dueDate, description, notes, priority) => {
     };
     todos.push(todo);
 
-    //adds od number to each item in the array
+    //adds id number to each item in the array
     todos.forEach((element, index) => {
         element.id = index + 1;
     });
