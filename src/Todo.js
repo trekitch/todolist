@@ -12,11 +12,15 @@ const createTodo = (name, dueDate, description, notes, priority) => {
     };
     todos.push(todo);
 
+    idElements(todos);
+};
+
+function idElements(todoArray) {
     //adds id number to each item in the array
     todos.forEach((element, index) => {
         element.id = index + 1;
     });
-};
+}
 
 function updateTodo(id, todosArray, updateElement, updateValue) {
     for (const obj of todosArray) {
@@ -40,6 +44,8 @@ function deleteTodo(todosArray, id) {
             todosArray.splice(index, 1);
         }
     });
+
+    idElements(todos);
 }
 
 export { todos, createTodo, updateTodo, displayTodo, deleteTodo };

@@ -14,3 +14,7 @@ displayTodo(todos);
 deleteTodo(todos, 4);
 
 displayTodo(todos);
+
+deleteTodo(todos, 1);
+
+displayTodo(todos);
