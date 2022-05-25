@@ -28,9 +28,26 @@ function addTodoToProject(todoArray, todoItemPosition, projectArray, projectId) 
             project.Todos.push(todoItem);
         }
     });
-    projects[0].Todos.forEach((todo) => {
+}
+
+function displayProjects(projectArr) {
+    console.log(JSON.parse(JSON.stringify(projectArr)));
+}
+
+function displayProjectTodos(projectArr, arrayPosition) {
+    projectArr[arrayPosition].Todos.forEach((todo) => {
         console.log(todo);
     });
 }
 
-export { createProject, addTodoToProject, projects };
+function deleteProject(projectArr, projectID) {
+    projectArr.forEach((element, index) => {
+        if (element.id === projectID) {
+            projectArr.splice(index, 1);
+        }
+    });
+
+    idProjects(projects);
+}
+
+export { createProject, addTodoToProject, projects, displayProjects, displayProjectTodos, deleteProject };

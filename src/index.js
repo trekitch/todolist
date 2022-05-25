@@ -1,5 +1,5 @@
 import { createTodo, displayTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
-import { createProject, addTodoToProject, projects } from "./project.js";
+import { createProject, addTodoToProject, projects, displayProjects, displayProjectTodos, deleteProject } from "./project.js";
 
 createTodo("Finish todo", "1/1/2022", "test description", "test note", "high");
 createTodo("Get rich", "1/30/2023", "test description", "test note", "high");
@@ -21,5 +21,16 @@ deleteTodo(todos, 1);
 displayTodo(todos);
 
 createProject("Test Project");
+createProject("Test Project 2");
+createProject("Test Project 3");
 
 addTodoToProject(todos, 1, projects, 1);
+addTodoToProject(todos, 0, projects, 1);
+
+displayProjects(projects);
+
+displayProjectTodos(projects, 0);
+
+deleteProject(projects, 1);
+
+displayProjects(projects);
