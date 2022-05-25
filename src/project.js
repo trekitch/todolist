@@ -3,6 +3,7 @@ const projects = [];
 const createProject = (name) => {
     let project = {
         Name: name,
+        Todos: [],
     };
 
     projects.push(project);
@@ -20,16 +21,16 @@ function idProjects(projectArr) {
 }
 
 function addTodoToProject(todoArray, todoItemPosition, projectArray, projectId) {
-    const todoID = todoArray[todoItemPosition].id;
     const todoItem = todoArray[todoItemPosition];
     //take a given todo and add it to a project
     projectArray.forEach((project) => {
         if (project.id === projectId) {
-            project[todoID] = todoItem;
+            project.Todos.push(todoItem);
         }
     });
-
-    console.log(projects);
+    projects[0].Todos.forEach((todo) => {
+        console.log(todo);
+    });
 }
 
 export { createProject, addTodoToProject, projects };

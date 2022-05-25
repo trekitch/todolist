@@ -23,4 +23,3 @@ displayTodo(todos);
 createProject("Test Project");
 
 addTodoToProject(todos, 1, projects, 1);
-addTodoToProject(todos, 0, projects, 1);
