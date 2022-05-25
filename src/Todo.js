@@ -1,6 +1,6 @@
 //this module with control CRUD for todos
 
-let todos = [{ Name: "test 1", Due: "test 2", Desc: "test 3", Notes: "test 4", Priority: "test 5" }];
+const todos = [{ Name: "test 1", Due: "test 2", Desc: "test 3", Notes: "test 4", Priority: "test 5" }];
 
 const createTodo = (name, dueDate, description, notes, priority) => {
     let todo = {
@@ -17,7 +17,7 @@ const createTodo = (name, dueDate, description, notes, priority) => {
 
 function idElements(todoArray) {
     //adds id number to each item in the array
-    todos.forEach((element, index) => {
+    todoArray.forEach((element, index) => {
         element.id = index + 1;
     });
 }
