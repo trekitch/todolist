@@ -60,3 +60,43 @@ footer {
     border-bottom:1px solid #000;
     padding: 10px;
 }
+
+.todoForm {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+input[type=text], textarea{
+    width: 100%;
+    padding: 5px 5px;
+    margin: 5px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.buttonContainer {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+button {
+  color: black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+button.cancel {
+    background-color: red;
+}
+
+button.submit {
+    background-color: greenyellow;
+}
+
