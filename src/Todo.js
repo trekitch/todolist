@@ -32,12 +32,6 @@ function updateTodo(id, todosArray, updateElement, updateValue) {
     }
 }
 
-function displayTodo(todoArray) {
-    console.log(JSON.parse(JSON.stringify(todoArray)));
-    //will call DOM methods to display todos
-    //for now is just a console log
-}
-
 function deleteTodo(todosArray, id) {
     todosArray.forEach((element, index) => {
         if (element.id === id) {
@@ -48,4 +42,4 @@ function deleteTodo(todosArray, id) {
     idElements(todos);
 }
 
-export { todos, createTodo, updateTodo, displayTodo, deleteTodo };
+export { todos, createTodo, updateTodo, deleteTodo };

@@ -1,4 +1,4 @@
-import { createTodo, displayTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
+import { createTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
 
 const main = document.querySelector(".main");
 
@@ -86,11 +86,33 @@ function addTodoDom(todoArray) {
         const todoRemove = document.createElement("p");
         todoRemove.textContent = "Remove";
         todoRemove.classList.add("removeTodo");
+
+        const todoDetailsContainer = document.createElement("div");
+        const details = document.createElement("div");
+        details.classList.add("todo-details");
+        const detailsTitle = document.createElement("h3");
+        detailsTitle.textContent = "Details";
+        detailsTitle.classList.add("details-title");
+        const detailsName = document.createElement("p");
+        detailsName.innerHTML = `<span class="title">Name:</span> ${element.Name}`;
+        const detailsDesc = document.createElement("p");
+        detailsDesc.innerHTML = `<span class="title">Description:</span> ${element.Desc}`;
+        const detailsPriority = document.createElement("p");
+        detailsPriority.innerHTML = `<span class="title">Priority:</span> ${element.Priority}`;
+        const detailsNotes = document.createElement("p");
+        detailsNotes.innerHTML = `<span class="title">Notes:</span> ${element.Notes}`;
+        const detailsDate = document.createElement("p");
+        detailsDate.innerHTML = `<span class="title">Due Date:</span> ${element.Due}`;
+        details.append(detailsTitle, todoDetailsContainer);
+        todoDetailsContainer.append(detailsName, detailsDesc, detailsNotes, detailsDate, detailsPriority);
+        todoDetailsContainer.classList.add("detailsOfToDo");
+
         todoContainer.setAttribute("data-index", element.id);
 
         todoContainer.append(todoCheckbox, todoTitle, todoDueDate, todoPriority, todoRemove);
 
         todoView.appendChild(todoContainer);
+        todoContainer.after(details);
     });
 
     todoView.appendChild(addTodo);
@@ -102,6 +124,20 @@ function addTodoDom(todoArray) {
             removeToDoDOM(todoIndex);
         });
     });
+
+    let coll = document.getElementsByClassName("todoItem");
+
+    for (let i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            let content = this.nextElementSibling;
+            if (content.style.display === "grid") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "grid";
+            }
+        });
+    }
 }
 
 function removeToDoDOM(elementID) {
@@ -109,5 +145,7 @@ function removeToDoDOM(elementID) {
     addTodoDom(todos);
     console.log(todos);
 }
+
+function displayTodoDetails() {}
 
 export { updateMain };

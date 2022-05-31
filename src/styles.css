@@ -50,6 +50,10 @@ footer {
     flex-direction: column;
 }
 
+.projectsSec {
+    flex-grow: 1;
+}
+
 .projectsSec ul {
     padding-left: 20px;
 }
@@ -98,5 +102,32 @@ button.cancel {
 
 button.submit {
     background-color: greenyellow;
+}
+
+.details-title {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.todo-details {
+    margin-top: 10px;
+    border: 2px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
+    
+}
+
+.title {
+    font-weight: bold;
+}
+
+.detailsOfToDo {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.detailsOfToDo > * {
+    padding-bottom: 10px
 }
 
