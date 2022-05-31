@@ -129,7 +129,7 @@ function addTodoDom(todoArray) {
 
     for (let i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function (e) {
-            if (e.target.getAttribute("class") !== "todoItem") return;
+            if (e.target.getAttribute("class") === "removeTodo") return;
             this.classList.toggle("active");
             let content = this.nextElementSibling;
             if (content.style.display === "grid") {
