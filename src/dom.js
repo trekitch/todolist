@@ -128,12 +128,15 @@ function addTodoDom(todoArray) {
     let coll = document.getElementsByClassName("todoItem");
 
     for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function () {
+        coll[i].addEventListener("click", function (e) {
+            if (e.target.getAttribute("class") !== "todoItem") return;
             this.classList.toggle("active");
             let content = this.nextElementSibling;
             if (content.style.display === "grid") {
+                console.log();
                 content.style.display = "none";
             } else {
+                console.log(e.target);
                 content.style.display = "grid";
             }
         });
