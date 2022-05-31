@@ -1,6 +1,8 @@
 import { createTodo, displayTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
 
 const main = document.querySelector(".main");
+
+const todoView = document.createElement("div");
 const addTodo = document.createElement("div");
 addTodo.textContent = "+ Add Todo";
 
@@ -17,6 +19,7 @@ function updateMain(todoArray) {
         console.log("Clicked inboxView");
         mainHeader.textContent = "Inbox";
         main.appendChild(mainHeader);
+        main.appendChild(todoView);
         addTodoDom(todoArray);
     });
 
@@ -45,7 +48,7 @@ function updateMain(todoArray) {
     </form>
         `;
         addTodo.style.display = "none";
-        main.append(formContainer);
+        todoView.append(formContainer);
 
         const cancelForm = document.querySelector(".cancel");
         cancelForm.addEventListener("click", () => {
@@ -68,7 +71,7 @@ function updateMain(todoArray) {
 }
 
 function addTodoDom(todoArray) {
-    main.innerHTML = "";
+    todoView.innerHTML = "";
     todoArray.forEach((element) => {
         const todoContainer = document.createElement("div");
         todoContainer.classList.add("todoItem");
@@ -80,13 +83,31 @@ function addTodoDom(todoArray) {
         todoDueDate.textContent = element.Due;
         const todoPriority = document.createElement("p");
         todoPriority.textContent = element.Priority;
+        const todoRemove = document.createElement("p");
+        todoRemove.textContent = "Remove";
+        todoRemove.classList.add("removeTodo");
+        todoContainer.setAttribute("data-index", element.id);
 
-        todoContainer.append(todoCheckbox, todoTitle, todoDueDate, todoPriority);
+        todoContainer.append(todoCheckbox, todoTitle, todoDueDate, todoPriority, todoRemove);
 
-        main.appendChild(todoContainer);
+        todoView.appendChild(todoContainer);
     });
 
-    main.appendChild(addTodo);
+    todoView.appendChild(addTodo);
+
+    document.querySelectorAll(".removeTodo").forEach((todo) => {
+        todo.addEventListener("click", (e) => {
+            const todoIndex = e.target.parentElement.getAttribute("data-index");
+            console.log(todoIndex);
+            removeToDoDOM(todoIndex);
+        });
+    });
+}
+
+function removeToDoDOM(elementID) {
+    deleteTodo(todos, parseInt(elementID));
+    addTodoDom(todos);
+    console.log(todos);
 }
 
 export { updateMain };
