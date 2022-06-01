@@ -29,24 +29,7 @@ function updateMain(todoArray) {
 
     addTodo.addEventListener("click", () => {
         formContainer.classList.add("todoForm");
-        formContainer.innerHTML = `
-        <form action="" class="">
-        <input type="text" name="todoName" id="todoName" placeholder="Title"/>
-        <textarea name="todoDesc" id="todoDesc" cols="30" rows="4" placeholder="Description"></textarea>
-        <textarea name="todoNotes" id="todoNotes" cols="30" rows="2" placeholder="Notes"></textarea>
-        <input type="date" name="dueDate" id="dueDate" />
-        <select name="priority" id="priority">
-            <option value="Low">Low</option>
-            <option value="Mid">Mid</option>
-            <option value="High">High</option>
-            <option value="&#128293;&#128293;&#128293;">&#128293;&#128293;&#128293;</option>
-        </select>
-        <div class="buttonContainer">
-            <button class="submit" type="button">Submit</button>
-            <button class="cancel" type="button">Cancel</button>
-        </div>
-    </form>
-        `;
+        formContainer.innerHTML = addToDoForm();
         addTodo.style.display = "none";
         todoView.append(formContainer);
 
@@ -87,32 +70,12 @@ function addTodoDom(todoArray) {
         todoRemove.textContent = "Remove";
         todoRemove.classList.add("removeTodo");
 
-        const todoDetailsContainer = document.createElement("div");
-        const details = document.createElement("div");
-        details.classList.add("todo-details");
-        const detailsTitle = document.createElement("h3");
-        detailsTitle.textContent = "Details";
-        detailsTitle.classList.add("details-title");
-        const detailsName = document.createElement("p");
-        detailsName.innerHTML = `<span class="title">Name:</span> ${element.Name}`;
-        const detailsDesc = document.createElement("p");
-        detailsDesc.innerHTML = `<span class="title">Description:</span> ${element.Desc}`;
-        const detailsPriority = document.createElement("p");
-        detailsPriority.innerHTML = `<span class="title">Priority:</span> ${element.Priority}`;
-        const detailsNotes = document.createElement("p");
-        detailsNotes.innerHTML = `<span class="title">Notes:</span> ${element.Notes}`;
-        const detailsDate = document.createElement("p");
-        detailsDate.innerHTML = `<span class="title">Due Date:</span> ${element.Due}`;
-        details.append(detailsTitle, todoDetailsContainer);
-        todoDetailsContainer.append(detailsName, detailsDesc, detailsNotes, detailsDate, detailsPriority);
-        todoDetailsContainer.classList.add("detailsOfToDo");
-
         todoContainer.setAttribute("data-index", element.id);
 
         todoContainer.append(todoCheckbox, todoTitle, todoDueDate, todoPriority, todoRemove);
 
         todoView.appendChild(todoContainer);
-        todoContainer.after(details);
+        todoContainer.after(displayTodoDetails(element));
     });
 
     todoView.appendChild(addTodo);
@@ -124,23 +87,6 @@ function addTodoDom(todoArray) {
             removeToDoDOM(todoIndex);
         });
     });
-
-    let coll = document.getElementsByClassName("todoItem");
-
-    for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function (e) {
-            if (e.target.getAttribute("class") === "removeTodo") return;
-            this.classList.toggle("active");
-            let content = this.nextElementSibling;
-            if (content.style.display === "grid") {
-                console.log();
-                content.style.display = "none";
-            } else {
-                console.log(e.target);
-                content.style.display = "grid";
-            }
-        });
-    }
 }
 
 function removeToDoDOM(elementID) {
@@ -149,6 +95,60 @@ function removeToDoDOM(elementID) {
     console.log(todos);
 }
 
-function displayTodoDetails() {}
+function addToDoForm() {
+    const form = `
+    <form action="" class="">
+    <input type="text" name="todoName" id="todoName" placeholder="Title"/>
+    <textarea name="todoDesc" id="todoDesc" cols="30" rows="4" placeholder="Description"></textarea>
+    <textarea name="todoNotes" id="todoNotes" cols="30" rows="2" placeholder="Notes"></textarea>
+    <input type="date" name="dueDate" id="dueDate" />
+    <select name="priority" id="priority">
+        <option value="Low">Low</option>
+        <option value="Mid">Mid</option>
+        <option value="High">High</option>
+        <option value="&#128293;&#128293;&#128293;">&#128293;&#128293;&#128293;</option>
+    </select>
+    <div class="buttonContainer">
+        <button class="submit" type="button">Submit</button>
+        <button class="cancel" type="button">Cancel</button>
+    </div>
+    </form>
+    `;
+
+    return form;
+}
+
+function displayTodoDetails(todoArrayElement) {
+    const selectOptions = ["Low", "Mid", "High", "🔥🔥🔥"];
+    const detailContainer = document.createElement("div");
+    detailContainer.classList.add("todo-details");
+    for (const property in todoArrayElement) {
+        let field;
+        if (property == "Desc") {
+            field = document.createElement("textarea");
+            field.value = todoArrayElement[property];
+        } else if (property == "Due") {
+            field = document.createElement("input");
+            field.setAttribute("type", "date");
+            field.value = "06/16/2022";
+        } else if (property == "Priority") {
+            field = document.createElement("select");
+            field.value = todoArrayElement[property];
+            for (let i = 0; i < selectOptions.length; i++) {
+                let option = document.createElement("option");
+                option.value = selectOptions[i];
+                option.text = selectOptions[i];
+                field.appendChild(option);
+            }
+        } else {
+            field = document.createElement("input");
+            field.value = todoArrayElement[property];
+        }
+        const label = document.createElement("label");
+        label.textContent = `${property}:`;
+        detailContainer.append(label, field);
+    }
+    return detailContainer;
+}
 
 export { updateMain };

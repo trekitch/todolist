@@ -17,10 +17,6 @@ createProject("Test Project 3");
 addTodoToProject(todos, 1, projects, 1);
 addTodoToProject(todos, 0, projects, 1);
 
-displayProjectTodos(projects, 0);
-
 deleteProject(projects, 1);
-
-displayProjects(projects);
 
 updateMain(todos);
