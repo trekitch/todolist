@@ -1,4 +1,5 @@
 import { createTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
+import { format } from "date-fns";
 
 const main = document.querySelector(".main");
 
@@ -53,7 +54,7 @@ function updateMain(todoArray) {
     });
 }
 
-function addTodoDom(todoArray) {
+function addTodoDom(todoArray, disabled = true) {
     todoView.innerHTML = "";
     todoArray.forEach((element) => {
         const todoContainer = document.createElement("div");
@@ -63,7 +64,7 @@ function addTodoDom(todoArray) {
         const todoTitle = document.createElement("p");
         todoTitle.textContent = element.Name;
         const todoDueDate = document.createElement("p");
-        todoDueDate.textContent = element.Due;
+        todoDueDate.textContent = format(new Date(element.Due), "MM/dd/yyyy");
         const todoPriority = document.createElement("p");
         todoPriority.textContent = element.Priority;
         const todoRemove = document.createElement("p");
@@ -75,7 +76,7 @@ function addTodoDom(todoArray) {
         todoContainer.append(todoCheckbox, todoTitle, todoDueDate, todoPriority, todoRemove);
 
         todoView.appendChild(todoContainer);
-        todoContainer.after(displayTodoDetails(element));
+        //todoContainer.after(displayTodoDetails(element, disabled));
     });
 
     todoView.appendChild(addTodo);
@@ -87,6 +88,27 @@ function addTodoDom(todoArray) {
             removeToDoDOM(todoIndex);
         });
     });
+
+    const todosItems = document.querySelectorAll(".todoItem");
+
+    todosItems.forEach((todo) => {
+        todo.addEventListener("click", () => {
+            console.log();
+            todo.after(displayTodoDetails(todos[todo.getAttribute("data-index") - 1], true));
+        });
+    });
+
+    for (let i = 0; i < todosItems.length; i++) {
+        todosItems[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "flex") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "flex";
+            }
+        });
+    }
 }
 
 function removeToDoDOM(elementID) {
@@ -118,37 +140,83 @@ function addToDoForm() {
     return form;
 }
 
-function displayTodoDetails(todoArrayElement) {
+function displayTodoDetails(todoArrayElement, disabled) {
     const selectOptions = ["Low", "Mid", "High", "🔥🔥🔥"];
     const detailContainer = document.createElement("div");
+    detailContainer.innerHTML = "";
+    const detailTitle = document.createElement("h3");
+    const detailHeader = document.createElement("div");
+    const detailEdit = document.createElement("p");
+    detailEdit.textContent = "Edit";
+    detailEdit.classList.add("edit");
+
+    detailHeader.append(detailTitle, detailEdit);
+
+    detailHeader.classList.add("details-title");
+
+    detailContainer.append(detailHeader);
+
+    detailTitle.textContent = "Details";
     detailContainer.classList.add("todo-details");
     for (const property in todoArrayElement) {
         let field;
-        if (property == "Desc") {
+        if (property == "id") {
+            continue;
+        } else if (property == "Desc") {
             field = document.createElement("textarea");
             field.value = todoArrayElement[property];
         } else if (property == "Due") {
             field = document.createElement("input");
             field.setAttribute("type", "date");
-            field.value = "06/16/2022";
+            let date = format(new Date(todoArrayElement[property]), "yyyy-MM-dd");
+            field.value = date;
         } else if (property == "Priority") {
             field = document.createElement("select");
-            field.value = todoArrayElement[property];
             for (let i = 0; i < selectOptions.length; i++) {
                 let option = document.createElement("option");
                 option.value = selectOptions[i];
                 option.text = selectOptions[i];
                 field.appendChild(option);
             }
+            field.value = todoArrayElement[property];
         } else {
             field = document.createElement("input");
             field.value = todoArrayElement[property];
         }
         const label = document.createElement("label");
         label.textContent = `${property}:`;
+
+        field.disabled = disabled;
+        field.classList.add(property);
         detailContainer.append(label, field);
     }
+
+    detailEdit.addEventListener("click", () => {
+        editTodo(detailContainer, todoArrayElement);
+    });
+
     return detailContainer;
+}
+
+function editTodo(detailContainer, element) {
+    const detailEdit = document.querySelector(".edit");
+    detailEdit.textContent = "Save";
+    let list = detailContainer.children;
+    let listArr = Array.from(list);
+    listArr.forEach((item) => (item.disabled = false));
+
+    if (detailEdit.textContent === "Save") {
+        detailEdit.addEventListener("click", () => {
+            const updateName = document.querySelector(".Name").value;
+            const updateDue = document.querySelector(".Due").value;
+            const updateDesc = document.querySelector(".Desc").value;
+            const updateNotes = document.querySelector(".Notes").value;
+            const updatePriority = document.querySelector(".Priority").value;
+            detailEdit.textContent = "Edit";
+            listArr.forEach((item) => (item.disabled = true));
+            updateTodo(element.id, todos);
+        });
+    }
 }
 
 export { updateMain };
