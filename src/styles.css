@@ -107,6 +107,8 @@ button.submit {
 .details-title {
     border-bottom: 1px solid black;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .todo-details {
@@ -114,20 +116,11 @@ button.submit {
     border: 2px solid grey;
     border-radius: 5px;
     padding: 5px;
-    display: none;
+    flex-direction: column;
     
 }
 
 .title {
     font-weight: bold;
-}
-
-.detailsOfToDo {
-    display: grid;
-    grid-template-columns: 50% 50%;
-}
-
-.detailsOfToDo > * {
-    padding-bottom: 10px
 }
 
