@@ -3,12 +3,12 @@ import { createTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
 import { createProject, addTodoToProject, projects, displayProjects, displayProjectTodos, deleteProject } from "./project.js";
 import { updateMain } from "./dom.js";
 
-createTodo("Finish todo", "1/1/2022", "test description", "test note", "high");
-createTodo("Get rich", "1/30/2023", "test description", "test note", "high");
-createTodo("Die trying", "1/30/2023", "test description", "test note", "low");
+createTodo("Finish todo", "01/01/2022", "test description", "test note", "High");
+createTodo("Get rich", "01/30/2023", "test description", "test note", "High");
+createTodo("Die trying", "01/30/2023", "test description", "test note", "Low");
 
 updateTodo(1, todos, "Name", "Finish Top");
-updateTodo(3, todos, "Priority", "Medium");
+updateTodo(3, todos, "Priority", "Mid");
 
 createProject("Test Project");
 createProject("Test Project 2");
