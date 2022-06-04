@@ -200,22 +200,21 @@ function displayTodoDetails(todoArrayElement, disabled) {
 
 function editTodo(detailContainer, element) {
     const detailEdit = document.querySelector(".edit");
-    detailEdit.textContent = "Save";
     let list = detailContainer.children;
     let listArr = Array.from(list);
-    listArr.forEach((item) => (item.disabled = false));
 
     if (detailEdit.textContent === "Save") {
-        detailEdit.addEventListener("click", () => {
-            const updateName = document.querySelector(".Name").value;
-            const updateDue = document.querySelector(".Due").value;
-            const updateDesc = document.querySelector(".Desc").value;
-            const updateNotes = document.querySelector(".Notes").value;
-            const updatePriority = document.querySelector(".Priority").value;
-            detailEdit.textContent = "Edit";
-            listArr.forEach((item) => (item.disabled = true));
-            updateTodo(element.id, todos);
-        });
+        listArr.forEach((item) => (item.disabled = true));
+        detailEdit.textContent = "Edit";
+    } else {
+        listArr.forEach((item) => (item.disabled = false));
+
+        const updateName = document.querySelector(".Name").value;
+        const updateDue = document.querySelector(".Due").value;
+        const updateDesc = document.querySelector(".Desc").value;
+        const updateNotes = document.querySelector(".Notes").value;
+        const updatePriority = document.querySelector(".Priority").value;
+        detailEdit.textContent = "Save";
     }
 }
 
