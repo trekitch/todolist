@@ -2,6 +2,7 @@ import "./styles.css";
 import { createTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
 import { createProject, addTodoToProject, projects, displayProjects, displayProjectTodos, deleteProject } from "./project.js";
 import { updateMain } from "./todoDom.js";
+import { addProjectForm, renderProjectList } from "./projectDOM.js";
 
 createTodo("Finish todo", "01/01/2022", "test description", "test note", "High");
 createTodo("Get rich", "01/30/2023", "test description", "test note", "High");
@@ -19,3 +20,5 @@ addTodoToProject(todos, 0, projects, 1);
 deleteProject(projects, 1);
 
 updateMain(todos);
+addProjectForm();
+renderProjectList();

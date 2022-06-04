@@ -8,8 +8,6 @@ const createProject = (name) => {
 
     projects.push(project);
 
-    console.log(projects);
-
     idProjects(projects);
 };
 
