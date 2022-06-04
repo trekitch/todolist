@@ -7,8 +7,7 @@ createTodo("Finish todo", "01/01/2022", "test description", "test note", "High")
 createTodo("Get rich", "01/30/2023", "test description", "test note", "High");
 createTodo("Die trying", "01/30/2023", "test description", "test note", "Low");
 
-updateTodo(1, todos, "Name", "Finish Top");
-updateTodo(3, todos, "Priority", "Mid");
+updateTodo(1, todos, "Finish TOP", "09/26/1995", "better desc", "better Notes", "Low");
 
 createProject("Test Project");
 createProject("Test Project 2");

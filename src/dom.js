@@ -54,7 +54,7 @@ function updateMain(todoArray) {
     });
 }
 
-function addTodoDom(todoArray, disabled = true) {
+function addTodoDom(todoArray) {
     todoView.innerHTML = "";
     todoArray.forEach((element) => {
         const todoContainer = document.createElement("div");
@@ -76,7 +76,6 @@ function addTodoDom(todoArray, disabled = true) {
         todoContainer.append(todoCheckbox, todoTitle, todoDueDate, todoPriority, todoRemove);
 
         todoView.appendChild(todoContainer);
-        //todoContainer.after(displayTodoDetails(element, disabled));
     });
 
     todoView.appendChild(addTodo);
@@ -206,14 +205,20 @@ function editTodo(detailContainer, element) {
     if (detailEdit.textContent === "Save") {
         listArr.forEach((item) => (item.disabled = true));
         detailEdit.textContent = "Edit";
-    } else {
-        listArr.forEach((item) => (item.disabled = false));
 
         const updateName = document.querySelector(".Name").value;
         const updateDue = document.querySelector(".Due").value;
         const updateDesc = document.querySelector(".Desc").value;
         const updateNotes = document.querySelector(".Notes").value;
         const updatePriority = document.querySelector(".Priority").value;
+
+        updateTodo(element.id, todos, updateName, updateDue, updateDesc, updateNotes, updatePriority);
+
+        console.log(todos);
+        addTodoDom(todos);
+    } else {
+        listArr.forEach((item) => (item.disabled = false));
+
         detailEdit.textContent = "Save";
     }
 }

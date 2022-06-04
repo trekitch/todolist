@@ -22,10 +22,14 @@ function idElements(todoArray) {
     });
 }
 
-function updateTodo(id, todosArray, updateElement, updateValue) {
+function updateTodo(id, todosArray, updatedName, updatedDue, updatedDesc, updatedNotes, updatedPriority) {
     for (const obj of todosArray) {
         if (obj.id === id) {
-            obj[updateElement] = updateValue;
+            obj.Name = updatedName;
+            obj.Due = updatedDue;
+            obj.Desc = updatedDesc;
+            obj.Notes = updatedNotes;
+            obj.Priority = updatedPriority;
 
             break;
         }
