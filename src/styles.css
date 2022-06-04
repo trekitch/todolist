@@ -117,7 +117,7 @@ button.submit {
     border-radius: 5px;
     padding: 5px;
     flex-direction: column;
-    
+    display: none;
 }
 
 .title {

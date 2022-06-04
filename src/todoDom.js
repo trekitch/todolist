@@ -76,6 +76,7 @@ function addTodoDom(todoArray) {
         todoContainer.append(todoCheckbox, todoTitle, todoDueDate, todoPriority, todoRemove);
 
         todoView.appendChild(todoContainer);
+        todoContainer.after(displayTodoDetails(element));
     });
 
     todoView.appendChild(addTodo);
@@ -89,13 +90,6 @@ function addTodoDom(todoArray) {
     });
 
     const todosItems = document.querySelectorAll(".todoItem");
-
-    todosItems.forEach((todo) => {
-        todo.addEventListener("click", () => {
-            console.log();
-            todo.after(displayTodoDetails(todos[todo.getAttribute("data-index") - 1], true));
-        });
-    });
 
     for (let i = 0; i < todosItems.length; i++) {
         todosItems[i].addEventListener("click", function () {
@@ -139,7 +133,7 @@ function addToDoForm() {
     return form;
 }
 
-function displayTodoDetails(todoArrayElement, disabled) {
+function displayTodoDetails(todoArrayElement) {
     const selectOptions = ["Low", "Mid", "High", "🔥🔥🔥"];
     const detailContainer = document.createElement("div");
     detailContainer.innerHTML = "";
@@ -185,7 +179,7 @@ function displayTodoDetails(todoArrayElement, disabled) {
         const label = document.createElement("label");
         label.textContent = `${property}:`;
 
-        field.disabled = disabled;
+        field.disabled = true;
         field.classList.add(property);
         detailContainer.append(label, field);
     }
