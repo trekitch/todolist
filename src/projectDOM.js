@@ -51,13 +51,9 @@ function addProjectToList(projectName) {
 }
 
 function projectView(project) {
-    const mainView = document.querySelector(".main");
-    const mainHeader = document.createElement("h2");
-
-    mainView.textContent = "";
+    const mainHeader = document.querySelector(".main-header");
     mainHeader.textContent = project.Name;
-    mainView.append(mainHeader);
-    addTodoDom(project.Todos);
+    updateMain(project.Todos);
 }
 
 export { addProjectForm, renderProjectList };

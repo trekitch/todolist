@@ -1,35 +1,30 @@
 import { createTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
 import { format } from "date-fns";
-
-const main = document.querySelector(".main");
-
-const todoView = document.createElement("div");
-const addTodo = document.createElement("div");
-addTodo.textContent = "+ Add Todo";
+const addTodo = document.querySelector(".add-todo");
 
 function updateMain(todoArray) {
+    const todoView = document.querySelector(".main-content");
     const inboxView = document.querySelector(".inboxView");
     const todayView = document.querySelector(".todayView");
-    const mainHeader = document.createElement("h2");
+    const mainHeader = document.querySelector(".main-header");
 
-    const formContainer = document.createElement("div");
+    const formContainer = document.querySelector(".todoForm");
     mainHeader.classList.add("main-header");
 
     inboxView.addEventListener("click", () => {
-        main.textContent = "";
-        console.log("Clicked inboxView");
+        todoView.innerHTML = "";
         mainHeader.textContent = "Inbox";
-        main.appendChild(mainHeader);
-        main.appendChild(todoView);
-        addTodoDom(todoArray);
+        addTodoDom(todos);
     });
 
     todayView.addEventListener("click", () => {
-        console.log("clicked todayView");
+        todoView.innerHTML = "";
+        mainHeader.textContent = "Today";
     });
 
     addTodo.addEventListener("click", () => {
-        formContainer.classList.add("todoForm");
+        const projectName = document.querySelector(".main-header").textContent;
+
         formContainer.innerHTML = addToDoForm();
         addTodo.style.display = "none";
         todoView.append(formContainer);
@@ -54,14 +49,17 @@ function updateMain(todoArray) {
             const toDoNotes = document.getElementById("todoNotes").value;
 
             createTodo(toDoName, toDoDate, toDoDesc, toDoNotes, toDoPriority);
-            addTodoDom(todos);
+            addTodoDom(todoArray);
             addTodo.style.display = "block";
         });
     });
+    todoView.innerHTML = "";
+    addTodoDom(todoArray);
 }
 
 function addTodoDom(todoArray) {
-    todoView.innerHTML = "";
+    const todoView = document.querySelector(".main-content");
+    todoView.textContent = "";
     todoArray.forEach((element) => {
         const todoContainer = document.createElement("div");
         todoContainer.classList.add("todoItem");

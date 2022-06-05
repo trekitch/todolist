@@ -17,11 +17,12 @@ createProject("Test Project 3");
 addTodoToProject(todos, 1, projects, 1);
 addTodoToProject(todos, 0, projects, 1);
 
+addTodoToProject(todos, 1, projects, 2);
+addTodoToProject(todos, 0, projects, 2);
+addTodoToProject(todos, 2, projects, 2);
+
+addTodoToProject(todos, 2, projects, 3);
+
 updateMain(todos);
 addProjectForm();
 renderProjectList();
-
-displayProjects(projects);
-
-console.log(todos);
-console.log(projects);
