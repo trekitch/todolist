@@ -1,4 +1,5 @@
 import { createProject, projects } from "./project";
+import { addTodoDom, updateMain } from "./todoDom.js";
 
 function renderProjectList() {
     const projectList = document.querySelector(".projectList");
@@ -6,7 +7,17 @@ function renderProjectList() {
     projects.forEach((project) => {
         const projectListItem = document.createElement("li");
         projectListItem.textContent = project.Name;
+        projectListItem.classList.add("project");
+        projectListItem.setAttribute("data-index", project.id);
         projectList.append(projectListItem);
+    });
+
+    const projectViews = document.querySelectorAll(".project");
+    projectViews.forEach((project) => {
+        project.addEventListener("click", () => {
+            const projectIndex = project.getAttribute("data-index");
+            projectView(projects[projectIndex - 1]);
+        });
     });
 }
 
@@ -37,6 +48,16 @@ function addProjectForm() {
 
 function addProjectToList(projectName) {
     createProject(projectName);
+}
+
+function projectView(project) {
+    const mainView = document.querySelector(".main");
+    const mainHeader = document.createElement("h2");
+
+    mainView.textContent = "";
+    mainHeader.textContent = project.Name;
+    mainView.append(mainHeader);
+    addTodoDom(project.Todos);
 }
 
 export { addProjectForm, renderProjectList };

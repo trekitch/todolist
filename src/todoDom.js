@@ -43,10 +43,16 @@ function updateMain(todoArray) {
         const submitForm = document.querySelector(".submit");
         submitForm.addEventListener("click", () => {
             const toDoName = document.getElementById("todoName").value;
-            const toDoDate = document.getElementById("dueDate").value;
+            let toDoDate = document.getElementById("dueDate").value;
+            if (toDoDate) {
+                toDoDate = document.getElementById("dueDate").value;
+            } else {
+                toDoDate = new Date();
+            }
             const toDoPriority = document.getElementById("priority").value;
             const toDoDesc = document.getElementById("todoDesc").value;
             const toDoNotes = document.getElementById("todoNotes").value;
+
             createTodo(toDoName, toDoDate, toDoDesc, toDoNotes, toDoPriority);
             addTodoDom(todos);
             addTodo.style.display = "block";
@@ -217,4 +223,4 @@ function editTodo(detailContainer, element) {
     }
 }
 
-export { updateMain };
+export { updateMain, addTodoDom };

@@ -98,11 +98,13 @@ button {
   max-width: 100%;
 }
 
-button.cancel {
+button.cancel,
+button.cancelProject {
     background-color: red;
 }
 
-button.submit {
+button.submit,
+button.submitProject {
     background-color: greenyellow;
 }
 
