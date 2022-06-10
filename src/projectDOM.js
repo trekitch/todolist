@@ -1,5 +1,5 @@
 import { createProject, projects } from "./project";
-import { addTodoDom, updateMain } from "./todoDom.js";
+//import { addTodoDom, updateMain } from "./todoDom.js";
 
 function renderProjectList() {
     const projectList = document.querySelector(".projectList");
@@ -53,7 +53,7 @@ function addProjectToList(projectName) {
 function projectView(project) {
     const mainHeader = document.querySelector(".main-header");
     mainHeader.textContent = project.Name;
-    updateMain(project.Todos);
+    //updateMain(project.Todos);
 }
 
 export { addProjectForm, renderProjectList };
