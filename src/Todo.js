@@ -1,14 +1,18 @@
 //this module with control CRUD for todos
 
-const todos = [{ Name: "test 1", Due: "09/26/1995", Desc: "test 3", Notes: "test 4", Priority: "Mid" }];
+const todos = [
+    { id: 0, Name: "test 1", Due: "09/26/1995", Desc: "test 3", Notes: "test 4", Priority: "Mid", Project: "Inbox" },
+    { id: 1, Name: "Another Todo", Due: "09/26/2022", Desc: "Great Description", Notes: "Awesome Notes", Priority: "Mid", Project: "Inbox" },
+];
 
-const createTodo = (name, dueDate, description, notes, priority) => {
+const createTodo = (name, dueDate, description, notes, priority, project) => {
     let todo = {
         Name: name,
         Due: dueDate,
         Desc: description,
         Notes: notes,
         Priority: priority,
+        Project: project,
     };
     todos.push(todo);
 
