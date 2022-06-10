@@ -65,8 +65,8 @@ footer {
     padding: 10px;
 }
 
-.todoForm {
-    display: flex;
+.add-todo-form {
+    display: none;
     flex-direction: column;
     padding: 10px;
 }
