@@ -45,3 +45,10 @@ cancel.addEventListener("click", (e) => {
     todoForm.style.display = "none";
     addTodo.style.display = "block";
 });
+
+window.onload = (event) => {
+    mainHeading.textContent = "Inbox";
+    createToDoList(todos);
+
+    displayDetails();
+};
