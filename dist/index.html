@@ -11,8 +11,8 @@
         <header>To Do List</header>
         <div class="content">
             <div class="sidebar">
-                <div class="inboxView">Inbox</div>
-                <div class="todayView">Today</div>
+                <div class="inbox-view">Inbox</div>
+                <div class="today-view">Today</div>
                 <div class="weekView">This Week</div>
                 <div class="monthView">This Month</div>
 
@@ -31,9 +31,26 @@
             </div>
             <div class="main">
                 <div class="main-header">Inbox</div>
-                <div class="main-content"></div>
+                <div class="todo-list"></div>
                 <div class="add-todo"><button type="button">+ Add Todo</button></div>
-                <div class="todoForm"></div>
+                <div class="add-todo-form-container">
+                    <form action="" class="add-todo-form">
+                        <input type="text" name="todoName" id="todoName" placeholder="Title" />
+                        <textarea name="todoDesc" id="todoDesc" cols="30" rows="4" placeholder="Description"></textarea>
+                        <textarea name="todoNotes" id="todoNotes" cols="30" rows="2" placeholder="Notes"></textarea>
+                        <input type="date" name="dueDate" id="dueDate" />
+                        <select name="priority" id="priority">
+                            <option value="Low">Low</option>
+                            <option value="Mid">Mid</option>
+                            <option value="High">High</option>
+                            <option value="&#128293;&#128293;&#128293;">&#128293;&#128293;&#128293;</option>
+                        </select>
+                        <div class="buttonContainer">
+                            <button class="submit" type="button">Submit</button>
+                            <button class="cancel" type="button">Cancel</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <footer>Created by Tre'von Kitchen</footer>
