@@ -37,6 +37,8 @@ todoForm.addEventListener("submit", (e) => {
     console.log("submitted form");
     todoForm.style.display = "none";
     addTodo.style.display = "block";
+
+    addTodoForm();
 });
 
 cancel.addEventListener("click", (e) => {
@@ -52,3 +54,19 @@ window.onload = (event) => {
 
     displayDetails();
 };
+
+function addTodoForm() {
+    const todoName = document.getElementById("todoName").value;
+    const todoDesc = document.getElementById("todoDesc").value;
+    const todoNotes = document.getElementById("todoNotes").value;
+    const todoDueDate = document.getElementById("dueDate").value;
+    const todoPriority = document.getElementById("priority").value;
+
+    const project = document.querySelector(".main-header").textContent;
+
+    createTodo(todoName, todoDueDate, todoDesc, todoNotes, todoPriority, project);
+
+    createToDoList(todos);
+    console.log(todos);
+    displayDetails();
+}
