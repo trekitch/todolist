@@ -1,7 +1,7 @@
 import "./styles.css";
 import { createTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
 import { createProject, addTodoToProject, projects, displayProjects, displayProjectTodos, deleteProject } from "./project.js";
-import { createToDoList, displayDetails } from "./todoDom.js";
+import { createToDoList, displayDetails, removeToDo } from "./todoDom.js";
 import { addProjectForm, renderProjectList } from "./projectDOM.js";
 
 const mainHeading = document.querySelector(".main-header");
@@ -17,8 +17,6 @@ inbox.addEventListener("click", () => {
     let newTodoList = todos.filter((todo) => todo.Project === "Inbox");
     mainHeading.textContent = "Inbox";
     createToDoList(newTodoList);
-
-    displayDetails();
 });
 
 today.addEventListener("click", () => {
@@ -39,6 +37,8 @@ todoForm.addEventListener("submit", (e) => {
     addTodo.style.display = "block";
 
     addTodoForm();
+
+    todoForm.reset();
 });
 
 cancel.addEventListener("click", (e) => {
@@ -51,8 +51,6 @@ cancel.addEventListener("click", (e) => {
 window.onload = (event) => {
     mainHeading.textContent = "Inbox";
     createToDoList(todos);
-
-    displayDetails();
 };
 
 function addTodoForm() {
@@ -68,5 +66,4 @@ function addTodoForm() {
 
     createToDoList(todos);
     console.log(todos);
-    displayDetails();
 }

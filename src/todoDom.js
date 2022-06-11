@@ -10,15 +10,15 @@ function createTodosElement(object, index) {
     const toDoName = document.createElement("p");
     const toDoDue = document.createElement("p");
     const toDoPriority = document.createElement("p");
-    const toDoDesc = document.createElement("div");
-    toDoDesc.textContent = object.Desc;
-    toDoDesc.classList.add("desc");
+    const toDoRemove = document.createElement("p");
+    toDoRemove.textContent = "Remove";
+    toDoRemove.classList.add("removeTodo");
 
     toDoName.textContent = object.Name;
     toDoDue.textContent = object.Due;
     toDoPriority.textContent = object.Priority;
     todoContainer.setAttribute("data-index", index);
-    todoContainer.append(toDoName, toDoDue, toDoPriority);
+    todoContainer.append(toDoName, toDoDue, toDoPriority, toDoRemove);
     todoContainer.classList.add("todoItem");
     todoList.appendChild(todoContainer);
     todoContainer.insertAdjacentElement("afterend", displayTodoDetails(object));
@@ -26,15 +26,26 @@ function createTodosElement(object, index) {
 
 function createToDoList(todoArray) {
     const parentDiv = document.querySelector(".todo-list");
-    parentDiv.innerHTML = "";
+    while (parentDiv.firstChild) {
+        parentDiv.firstChild.remove();
+    }
     todoArray.forEach((element, index) => {
         createTodosElement(element, index);
     });
+
+    document.querySelectorAll(".removeTodo").forEach((todo) => {
+        todo.addEventListener("click", (e) => {
+            const todoIndex = e.target.parentElement.getAttribute("data-index");
+            console.log(todoIndex);
+            removeToDo(todoIndex);
+        });
+    });
+
+    displayDetails();
 }
 
 function displayDetails() {
     const todoItems = document.querySelectorAll(".todo-container");
-
     todoItems.forEach((todoItem) => {
         todoItem.addEventListener("click", () => {
             if (todoItem.nextSibling.style.display == "none") {
@@ -46,10 +57,10 @@ function displayDetails() {
     });
 }
 
-function removeToDoDOM(elementID) {
+function removeToDo(elementID) {
     deleteTodo(todos, parseInt(elementID));
-    addTodoDom(todos);
     console.log(todos);
+    createToDoList(todos);
 }
 
 function displayTodoDetails(todoArrayElement) {
@@ -70,6 +81,7 @@ function displayTodoDetails(todoArrayElement) {
 
     detailTitle.textContent = "Details";
     detailContainer.classList.add("todo-details");
+    detailContainer.style.display = "none";
     for (const property in todoArrayElement) {
         let field;
         if (property == "id") {
@@ -129,7 +141,6 @@ function editTodo(detailContainer, element) {
 
         console.log(todos);
         createToDoList(todos);
-        displayDetails();
     } else {
         listArr.forEach((item) => (item.disabled = false));
 
@@ -137,4 +148,4 @@ function editTodo(detailContainer, element) {
     }
 }
 
-export { createToDoList, displayDetails };
+export { createToDoList, displayDetails, removeToDo };

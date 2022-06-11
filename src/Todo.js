@@ -22,7 +22,7 @@ const createTodo = (name, dueDate, description, notes, priority, project) => {
 function idElements(todoArray) {
     //adds id number to each item in the array
     todoArray.forEach((element, index) => {
-        element.id = index + 1;
+        element.id = index;
     });
 }
 
