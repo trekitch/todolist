@@ -26,9 +26,7 @@ function createTodosElement(object, index) {
 
 function createToDoList(todoArray) {
     const parentDiv = document.querySelector(".todo-list");
-    while (parentDiv.firstChild) {
-        parentDiv.firstChild.remove();
-    }
+    parentDiv.innerHTML = "";
     todoArray.forEach((element, index) => {
         createTodosElement(element, index);
     });
