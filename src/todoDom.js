@@ -36,6 +36,8 @@ function createToDoList(todoArray) {
             const todoIndex = e.target.parentElement.getAttribute("data-index");
             console.log(todoIndex);
             removeToDo(todoIndex);
+
+            e.stopPropagation();
         });
     });
 
@@ -45,7 +47,7 @@ function createToDoList(todoArray) {
 function displayDetails() {
     const todoItems = document.querySelectorAll(".todo-container");
     todoItems.forEach((todoItem) => {
-        todoItem.addEventListener("click", () => {
+        todoItem.addEventListener("click", (e) => {
             if (todoItem.nextSibling.style.display == "none") {
                 todoItem.nextSibling.style.display = "block";
             } else {

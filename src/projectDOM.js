@@ -1,5 +1,6 @@
 import { createProject, projects } from "./project";
-//import { addTodoDom, updateMain } from "./todoDom.js";
+import { createToDoList } from "./todoDom.js";
+import { createTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
 
 function renderProjectList() {
     const projectList = document.querySelector(".projectList");
@@ -53,7 +54,8 @@ function addProjectToList(projectName) {
 function projectView(project) {
     const mainHeader = document.querySelector(".main-header");
     mainHeader.textContent = project.Name;
-    //updateMain(project.Todos);
+    let newTodoList = todos.filter((todo) => todo.Project === project.Name);
+    createToDoList(newTodoList);
 }
 
 export { addProjectForm, renderProjectList };

@@ -17,12 +17,16 @@ inbox.addEventListener("click", () => {
     let newTodoList = todos.filter((todo) => todo.Project === "Inbox");
     mainHeading.textContent = "Inbox";
     createToDoList(newTodoList);
+
+    addTodo.style.display = "block";
 });
 
 today.addEventListener("click", () => {
     let newTodoList = todos.filter((todo) => todo.Project === "Today");
     mainHeading.textContent = "Today";
     createToDoList(newTodoList);
+
+    addTodo.style.display = "none";
 });
 
 addTodo.addEventListener("click", () => {
@@ -51,6 +55,7 @@ cancel.addEventListener("click", (e) => {
 window.onload = (event) => {
     mainHeading.textContent = "Inbox";
     createToDoList(todos);
+    addProjectForm();
 };
 
 function addTodoForm() {
@@ -64,6 +69,7 @@ function addTodoForm() {
 
     createTodo(todoName, todoDueDate, todoDesc, todoNotes, todoPriority, project);
 
-    createToDoList(todos);
-    console.log(todos);
+    let newTodoList = todos.filter((todo) => todo.Project === project);
+    createToDoList(newTodoList);
+    console.log(newTodoList);
 }
