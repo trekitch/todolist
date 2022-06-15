@@ -7,9 +7,13 @@ function renderProjectList() {
     projectList.innerHTML = "";
     projects.forEach((project) => {
         const projectListItem = document.createElement("li");
-        projectListItem.textContent = project.Name;
+        const projectName = document.createElement("div");
+        const projectRemove = document.createElement("div");
+        projectName.textContent = project.Name;
+        projectRemove.textContent = "Delete";
         projectListItem.classList.add("project");
         projectListItem.setAttribute("data-index", project.id);
+        projectListItem.append(projectName, projectRemove);
         projectList.append(projectListItem);
     });
 
@@ -17,7 +21,7 @@ function renderProjectList() {
     projectViews.forEach((project) => {
         project.addEventListener("click", () => {
             const projectIndex = project.getAttribute("data-index");
-            projectView(projects[projectIndex - 1]);
+            projectView(projects[projectIndex]);
         });
     });
 }

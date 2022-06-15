@@ -14,7 +14,7 @@ const createProject = (name) => {
 function idProjects(projectArr) {
     //adds id number to each item in the array
     projectArr.forEach((element, index) => {
-        element.id = index + 1;
+        element.id = index;
     });
 }
 

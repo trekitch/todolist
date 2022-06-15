@@ -133,3 +133,8 @@ button.submitProject {
     flex-direction: column;
 }
 
+.project {
+    display: flex;
+    justify-content: space-between;
+}
+
