@@ -1,8 +1,8 @@
 import "./styles.css";
 import { createTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
 import { createProject, addTodoToProject, projects, displayProjects, displayProjectTodos, deleteProject } from "./project.js";
-import { createToDoList, displayDetails, removeToDo } from "./todoDom.js";
-import { addProjectForm, renderProjectList } from "./projectDOM.js";
+import { createToDoList } from "./todoDom.js";
+import { addProjectForm } from "./projectDOM.js";
 
 const mainHeading = document.querySelector(".main-header");
 
