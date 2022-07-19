@@ -27,8 +27,8 @@ function createTodosElement(object, index) {
 function createToDoList(todoArray) {
     const parentDiv = document.querySelector(".todo-list");
     parentDiv.innerHTML = "";
-    todoArray.forEach((element, index) => {
-        createTodosElement(element, index);
+    todoArray.forEach((element) => {
+        createTodosElement(element, element.id);
     });
 
     document.querySelectorAll(".removeTodo").forEach((todo) => {
@@ -58,9 +58,11 @@ function displayDetails() {
 }
 
 function removeToDo(elementID) {
+    const mainHeader = document.querySelector(".main-header");
     deleteTodo(todos, parseInt(elementID));
-    console.log(todos);
-    createToDoList(todos);
+    let newTodoList = todos.filter((todo) => todo.Project === mainHeader.textContent);
+    console.log(newTodoList);
+    createToDoList(newTodoList);
 }
 
 function displayTodoDetails(todoArrayElement) {
