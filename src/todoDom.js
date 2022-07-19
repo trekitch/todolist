@@ -142,7 +142,9 @@ function editTodo(detailContainer, element) {
         updateTodo(element.id, todos, updateName, updateDue, updateDesc, updateNotes, updatePriority);
 
         console.log(todos);
-        createToDoList(todos);
+        const mainHeader = document.querySelector(".main-header");
+        let newTodoList = todos.filter((todo) => todo.Project === mainHeader.textContent);
+        createToDoList(newTodoList);
     } else {
         listArr.forEach((item) => (item.disabled = false));
 
