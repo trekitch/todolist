@@ -1,6 +1,5 @@
 import "./styles.css";
 import { createTodo, todos, updateTodo, deleteTodo } from "./Todo.js";
-import { createProject, addTodoToProject, projects, displayProjects, displayProjectTodos, deleteProject } from "./project.js";
 import { createToDoList } from "./todoDom.js";
 import { addProjectForm } from "./projectDOM.js";
 

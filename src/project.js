@@ -18,15 +18,15 @@ function idProjects(projectArr) {
     });
 }
 
-function addTodoToProject(todoArray, todoItemPosition, projectArray, projectId) {
-    const todoItem = todoArray[todoItemPosition];
-    //take a given todo and add it to a project
-    projectArray.forEach((project) => {
-        if (project.id === projectId) {
-            project.Todos.push(todoItem);
-        }
-    });
-}
+// function addTodoToProject(todoArray, todoItemPosition, projectArray, projectId) {
+//     const todoItem = todoArray[todoItemPosition];
+//     //take a given todo and add it to a project
+//     projectArray.forEach((project) => {
+//         if (project.id === projectId) {
+//             project.Todos.push(todoItem);
+//         }
+//     });
+// }
 
 function displayProjects(projectArr) {
     console.log(JSON.parse(JSON.stringify(projectArr)));
@@ -48,4 +48,4 @@ function deleteProject(projectArr, projectID) {
     idProjects(projects);
 }
 
-export { createProject, addTodoToProject, projects, displayProjects, displayProjectTodos, deleteProject };
+export { createProject, projects, displayProjects, displayProjectTodos, deleteProject };

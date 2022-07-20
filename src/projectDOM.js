@@ -19,9 +19,17 @@ function renderProjectList() {
 
     const projectViews = document.querySelectorAll(".project");
     projectViews.forEach((project) => {
-        project.addEventListener("click", () => {
-            const projectIndex = project.getAttribute("data-index");
-            projectView(projects[projectIndex]);
+        project.addEventListener("click", (e) => {
+            if (e.target.textContent === "Delete") {
+                console.log(e.target.parentNode.getAttribute("data-index"));
+                console.log(projects);
+                console.log(todos);
+                let newTodoList = todos.filter((todo) => todo.Project === projects.Name);
+                console.log(newTodoList);
+            } else {
+                const projectIndex = project.getAttribute("data-index");
+                projectView(projects[projectIndex]);
+            }
         });
     });
 }
@@ -61,5 +69,7 @@ function projectView(project) {
     let newTodoList = todos.filter((todo) => todo.Project === project.Name);
     createToDoList(newTodoList);
 }
+
+function removeProject() {}
 
 export { addProjectForm, renderProjectList };
