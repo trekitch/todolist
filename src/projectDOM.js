@@ -70,6 +70,6 @@ function projectView(project) {
     createToDoList(newTodoList);
 }
 
-function removeProject() {}
+function removeProject(project) {}
 
 export { addProjectForm, renderProjectList };
